@@ -17,7 +17,5 @@ public class MovieStatistics extends BaseEntity {
     @Column(name = "m_statistics_viewsCount")
     private Long viewsCount;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+
 }

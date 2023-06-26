@@ -20,7 +20,4 @@ public class MovieSnippet extends BaseEntity {
     @Column(name = "m_snippet_title")
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
 }

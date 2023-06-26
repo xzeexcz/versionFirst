@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.api.YoutubeAPIClient;
 import com.example.demo.api.serialization.JsonSerialization;
+import com.example.demo.entities.impls.Movie;
 import com.example.demo.respository.MovieRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,6 +29,10 @@ public class MovieService {
             System.out.println("NULL SUKA");
             throw new IOException();
         }
+    }
+
+    public final Movie lol(String url) {
+        return movieRepository.findByMovieId(url);
     }
 
 }

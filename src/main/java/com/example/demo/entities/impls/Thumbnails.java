@@ -26,7 +26,4 @@ public class Thumbnails extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "standard_thumbnail_id")
     private Thumbnail standardThumbnail;
-    @ManyToOne(cascade =CascadeType.ALL)
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
 }

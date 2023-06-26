@@ -30,8 +30,5 @@ public class VideoController {
     @GetMapping(value = "/{videoId}")
     public void getVideos(@PathVariable String videoId) throws GeneralSecurityException, IOException {
         movieService.home(videoId);
-        movieSnippetService.home(videoId);
-        movieStatisticsService.home(videoId);
-        thumbnailsService.home(videoId);
     }
 }
