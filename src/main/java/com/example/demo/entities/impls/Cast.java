@@ -10,12 +10,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "t_movies_genres")
+@Table(name = "t_movies_cast")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Genres extends BaseEntity {
-    @Column(name = "genre_action", length = 20)
-    private String genreName;
+public class Cast extends BaseEntity {
+    @Column(name = "fullName")
+    private String fullName;
+
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
 }
