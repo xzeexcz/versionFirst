@@ -2,7 +2,9 @@ package com.example.demo.services.impls;
 
 import com.example.demo.api.YoutubeAPIClient;
 import com.example.demo.api.serialization.MovieSerialization;
+import com.example.demo.dto.MovieDTO;
 import com.example.demo.entities.impls.Movie;
+import com.example.demo.mapper.MovieMapper;
 import com.example.demo.respository.MovieRepository;
 import com.example.demo.services.MovieService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -22,6 +24,7 @@ public class MovieServiceImpl implements MovieService {
     private final YoutubeAPIClient youtubeAPIClient;
     private final MovieRepository movieRepository;
     private final MovieSerialization movieSerialization;
+    private final MovieMapper movieMapper;
 
     @Override
     public void addMovieToDataBase(String videoId,
@@ -47,5 +50,15 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie getOneMovieFromDataBase(String videoId) {
         return movieRepository.findByMovieId(videoId);
+    }
+
+    @Override
+    public MovieDTO getOneMovieDtoFromDataBase(String videoId) {
+        return movieMapper.toMovieDto(movieRepository.findByMovieId(videoId));
+    }
+
+    @Override
+    public List<MovieDTO> getMoviesDtoFromDataBase() {
+        return movieMapper.toMovieDtoList(movieRepository.findAll());
     }
 }

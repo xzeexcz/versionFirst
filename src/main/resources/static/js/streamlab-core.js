@@ -179,7 +179,6 @@ Design and Developed by: Gentechtree
                     margin: app_slider.data("margin"),
                     nav: app_slider.data("nav"),
                     dots: app_slider.data("dots"),
-                    loop: app_slider.data("loop"),
                     autoplay: app_slider.data("autoplay"),
                     autoplayHoverPause: true,
                     autoplayTimeout: app_slider.data("autoplay-timeout"),

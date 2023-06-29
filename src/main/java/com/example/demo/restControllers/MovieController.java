@@ -1,5 +1,6 @@
 package com.example.demo.restControllers;
 
+import com.example.demo.dto.MovieDTO;
 import com.example.demo.entities.impls.Movie;
 import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
@@ -35,5 +36,13 @@ public class MovieController {
     @GetMapping(value = "/movie/{videoId}")
     public Movie getOneMovie(@PathVariable String videoId) {
         return movieService.getOneMovieFromDataBase(videoId);
+    }
+    @GetMapping(value = "/dto/{videoId}")
+    public MovieDTO getOneMovieDto(@PathVariable String videoId) {
+    return movieService.getOneMovieDtoFromDataBase(videoId);
+    }
+    @GetMapping(value = "/dto")
+    public List<MovieDTO> getMoviesDtoFromDataBase() {
+        return movieService.getMoviesDtoFromDataBase();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.dto.MovieDTO;
 import com.example.demo.entities.impls.Movie;
 
 import java.io.IOException;
@@ -18,4 +19,6 @@ public interface MovieService {
 
     Movie getOneMovieFromDataBase(String videoId);
 
+    MovieDTO getOneMovieDtoFromDataBase(String videoId);
+    List<MovieDTO> getMoviesDtoFromDataBase();
 }
