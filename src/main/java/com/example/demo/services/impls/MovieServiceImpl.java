@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void addMovieToDataBase(String videoId,
                                    List<Long> genresId, List<Long> castsId,
-                                   Date runTime, Date releaseDate,
+                                   LocalTime runTime, Date releaseDate,
                                    double rating) throws GeneralSecurityException, IOException {
         Video video = youtubeAPIClient.getVideoDetails(videoId);
         ObjectMapper objectMapper = new ObjectMapper();

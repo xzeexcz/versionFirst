@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -23,8 +24,8 @@ public class MovieSnippet extends BaseEntity {
     private String title;
     @Column(name = "m_snippet_release_date")
     private Date releaseDate;
-    @Column(name = "m_snippet_runtime")
-    private Date runTime;
+    @Column(name = "m_snippet_runtime", columnDefinition = "DATE")
+    private LocalTime runTime;
     @Column(name = "m_snippet_rating", length = 20, columnDefinition = "DOUBLE")
     private double rating;
 

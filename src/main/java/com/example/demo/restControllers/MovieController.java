@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class MovieController {
                           @RequestParam(name = "genresId") List<Long> genresId,
                           @RequestParam(name = "castsId") List<Long> castsId,
                           @RequestParam(name = "runtime")
-                              @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX") Date runTime,
+                              @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX") LocalTime runTime,
                           @RequestParam(name = "releaseDate")
                               @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX") Date releaseDate,
                           @RequestParam(name = "rating") double rating) throws GeneralSecurityException, IOException {
@@ -43,6 +44,9 @@ public class MovieController {
     }
     @GetMapping(value = "/dto")
     public List<MovieDTO> getMoviesDtoFromDataBase() {
+        return movieService.getMoviesDtoFromDataBase();
+    }@GetMapping(value = "/dtos")
+    public List<MovieDTO> getMoviesDtoFromDataBase1() {
         return movieService.getMoviesDtoFromDataBase();
     }
 }

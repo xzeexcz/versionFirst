@@ -1,314 +1,86 @@
-function loadMovies() {
-    var movieContainer = $('#cardso');
+function loadMoviesForAnother() {
 
     $.ajax({
-        url: '/home/dto',
+        url: '/home/dtos',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            var html = '';
-            var itemCount = 0;
-            var carousel = document.querySelector('.owl-carousel');
-            for (var i = 12; i <= 14; i++) {
-                var movie = response[i];
-                itemCount += i;
-                html += '<div class="item">';
-                html += '<div class="gen-movie-contain-style-2 h-100">';
-                html += '<div class="container h-100">';
-                html += '<div class="row flex-row-reverse align-items-center h-100">';
-                html += '<div class="col-xl-6">';
-                html += '<div class="gen-front-image">';
-                html += '<img src="'+ movie.thumbnailsDTO.maxresThumbnail.url + '" alt="owl-carousel-banner-image">';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="col-xl-6">';
-                html += '<div class="gen-tag-line"><span>Most Viewed</span></div>';
-                html += '<div class="gen-movie-info">';
-                html += '<h3>' + movie.movieSnippetDTO.title + '</h3>';
-                html += '</div>';
-                html += '<div class="gen-movie-meta-holder">';
-                html += '<ul class="gen-meta-after-title">';
-                html += '<li class="gen-sen-rating"><span>' + movie.movieSnippetDTO.rating + '</span></li>';
-                html += '<li><img src="' + movie.thumbnailsDTO.defaultThumbnail.url + '" alt="rating-image"><span>' + movie.movieStatisticsDTO.viewsCount + '</span></li>';
-                html += '</ul>';
-                html += '<p>' + movie.movieSnippetDTO.description + '</p>';
-                html += '<div class="gen-meta-info">';
-                html += '<ul class="gen-meta-after-excerpt">';
-                html += '<li><strong>Cast :</strong> ' + movie.castDTOList.map(function (cast) {
-                    return cast.fullName;
-                }).join(', ') + '</li>';
-                html += '<li><strong>Genre :</strong> ' + movie.genresDTOList.map(function (genre) {
-                    return '<span><a href="#">' + genre.genreName + '</a></span>';
-                }).join(', ') + '</li>';
-                html += '</ul>';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="gen-movie-action">';
-                html += '<div class="gen-btn-container">';
-                html += '<a href="single-movie.html" class="gen-button .gen-button-dark">';
-                html += '<i aria-hidden="true" class="fas fa-play"></i> <span class="text">Play Now</span>';
-                html += '</a>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                // $('#movie-container').owlCarousel('add', '<div class="slide"><ul class="postcard_list">'+ html +'</ul></div>').owlCarousel('refresh');
-                $('.carik').owlCarousel('add', html).owlCarousel('refresh');
-            }
-            carousel.dataset.desk_num = itemCount;
-            movieContainer.html(html);
-        },
-        error: function(xhr, status, error) {
-            console.log('AJAX Error:', error);
-        }
-    });
-}
-
-
-function loadMovies() {
-    var movieContainer = $('#movie-container');
-
-    $.ajax({
-        url: '/home/dto',
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            var html = '';
-            var itemCount = 0;
-            var carousel = document.querySelector('.owl-carousel');
-            for (var i = 12; i <= 14; i++) {
-                var movie = response[i];
-                itemCount += i;
-                html += '<div class="item">';
-                html += '<div class="gen-movie-contain-style-2 h-100">';
-                html += '<div class="container h-100">';
-                html += '<div class="row flex-row-reverse align-items-center h-100">';
-                html += '<div class="col-xl-6">';
-                html += '<div class="gen-front-image">';
-                html += '<img src="'+ movie.thumbnailsDTO.maxresThumbnail.url + '" alt="owl-carousel-banner-image">';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="col-xl-6">';
-                html += '<div class="gen-tag-line"><span>Most Viewed</span></div>';
-                html += '<div class="gen-movie-info">';
-                html += '<h3>' + movie.movieSnippetDTO.title + '</h3>';
-                html += '</div>';
-                html += '<div class="gen-movie-meta-holder">';
-                html += '<ul class="gen-meta-after-title">';
-                html += '<li class="gen-sen-rating"><span>' + movie.movieSnippetDTO.rating + '</span></li>';
-                html += '<li><img src="' + movie.thumbnailsDTO.defaultThumbnail.url + '" alt="rating-image"><span>' + movie.movieStatisticsDTO.viewsCount + '</span></li>';
-                html += '</ul>';
-                html += '<p>' + movie.movieSnippetDTO.description + '</p>';
-                html += '<div class="gen-meta-info">';
-                html += '<ul class="gen-meta-after-excerpt">';
-                html += '<li><strong>Cast :</strong> ' + movie.castDTOList.map(function (cast) {
-                    return cast.fullName;
-                }).join(', ') + '</li>';
-                html += '<li><strong>Genre :</strong> ' + movie.genresDTOList.map(function (genre) {
-                    return '<span><a href="#">' + genre.genreName + '</a></span>';
-                }).join(', ') + '</li>';
-                html += '</ul>';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="gen-movie-action">';
-                html += '<div class="gen-btn-container">';
-                html += '<a href="single-movie.html" class="gen-button .gen-button-dark">';
-                html += '<i aria-hidden="true" class="fas fa-play"></i> <span class="text">Play Now</span>';
-                html += '</a>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                // $('#movie-container').owlCarousel('add', '<div class="slide"><ul class="postcard_list">'+ html +'</ul></div>').owlCarousel('refresh');
-            }
-            carousel.dataset.desk_num = itemCount;
-            movieContainer.html(html);
-        },
-        error: function(xhr, status, error) {
-            console.log('AJAX Error:', error);
-        }
-    });
-} // работающий код
-
-// $.ajax({
-//     url: "/api/index.php?app=gifts&act=list",
-//     success: function(data) {
-//         var stat = data.code;
-//
-//         if (stat == '200') {
-//
-//             var photos = data.data;
-//             $.each(photos, function(i, item) {
-//                 var photo_item = '<div class="s"> <li data-card-cr="'+price+'" data-card-img="'+item.card_img+'" data-card-id="'+ item.card_id +'" data-card-name="'+item.card_name+'" data-card-usd="'+item.price_usd+'" ><img src="'+item.card_img+'"  class="postcard_image" /></li></div>';
-//
-//                 $('.postcard-main-c').owlCarousel('add', '<div class="slide"><ul class="postcard_list-m">'+ photo_item +'</ul></div>').owlCarousel('refresh');
-//             });
-//         }
-//     })
-
-function loadMovies() {
-    var movieContainer = $('#cardso');
-
-    $.ajax({
-        url: '/home/dto',
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            var html = '';
-            var itemCount = 0;
-            var carousel = document.querySelector('.owl-carousel');
-            $('.carik').owlCarousel({
-                merge: false
-            });
-
-            for (var i = 12; i <= 14; i++) {
-                var movie = response[i];
-                itemCount += i;
-                html += '<div class="item">';
-                html += '<div class="gen-movie-contain-style-2 h-100">';
-                html += '<div class="container h-100">';
-                html += '<div class="row flex-row-reverse align-items-center h-100">';
-                html += '<div class="col-xl-6">';
-                html += '<div class="gen-front-image">';
-                html += '<img src="'+ movie.thumbnailsDTO.maxresThumbnail.url + '" alt="owl-carousel-banner-image">';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="col-xl-6">';
-                html += '<div class="gen-tag-line"><span>Most Viewed</span></div>';
-                html += '<div class="gen-movie-info">';
-                html += '<h3>' + movie.movieSnippetDTO.title + '</h3>';
-                html += '</div>';
-                html += '<div class="gen-movie-meta-holder">';
-                html += '<ul class="gen-meta-after-title">';
-                html += '<li class="gen-sen-rating"><span>' + movie.movieSnippetDTO.rating + '</span></li>';
-                html += '<li><img src="' + movie.thumbnailsDTO.defaultThumbnail.url + '" alt="rating-image"><span>' + movie.movieStatisticsDTO.viewsCount + '</span></li>';
-                html += '</ul>';
-                html += '<p>' + movie.movieSnippetDTO.description + '</p>';
-                html += '<div class="gen-meta-info">';
-                html += '<ul class="gen-meta-after-excerpt">';
-                html += '<li><strong>Cast :</strong> ' + movie.castDTOList.map(function (cast) {
-                    return cast.fullName;
-                }).join(', ') + '</li>';
-                html += '<li><strong>Genre :</strong> ' + movie.genresDTOList.map(function (genre) {
-                    return '<span><a href="#">' + genre.genreName + '</a></span>';
-                }).join(', ') + '</li>';
-                html += '</ul>';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="gen-movie-action">';
-                html += '<div class="gen-btn-container">';
-                html += '<a href="single-movie.html" class="gen-button .gen-button-dark">';
-                html += '<i aria-hidden="true" class="fas fa-play"></i> <span class="text">Play Now</span>';
-                html += '</a>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                // $('#movie-container').owlCarousel('add', '<div class="slide"><ul class="postcard_list">'+ html +'</ul></div>').owlCarousel('refresh');
-                $('.carik').owlCarousel('add', html);
-            }
-            $('.carik').owlCarousel('refresh');
-            carousel.dataset.desk_num = itemCount;
-            // movieContainer.html(html);
-        },
-        error: function(xhr, status, error) {
-            console.log('AJAX Error:', error);
-        }
-    });
-}
-
-<div className="owl-carousel carik" id="cardso" data-margin="0" data-loop="true" data-desk_num="1">
-
-</div>
-
-function loadMovies() {
-    var movieContainer = $('#cardso');
-
-    $.ajax({
-        url: '/home/dto',
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            var html = '';
-            var itemCount = 0;
-            var carousel = document.querySelector('.owl-carousel');
-            $('.carik').owlCarousel('destroy');
-            $('.carik').owlCarousel({
+            var html1 = '';
+            $('.lolka').owlCarousel('destroy');
+            $('.lolka').owlCarousel({
+                items: 4,
                 merge: false, // Отключить объединение элементов
-                loop: true, // Зациклить карусель
+                loop: false, // Зациклить карусель
                 nav: true, // Показывать навигационные кнопки
                 dots: false, // Скрыть точки навигации
+                margin: 30,
                 responsive: {
                     0: {
-                        items: 1 // Количество элементов на мобильных устройствах
+                        items: 4 // Количество элементов на мобильных устройствах
                     },
                     768: {
-                        items: 3 // Количество элементов на планшетах и десктопах
+                        items: 4 // Количество элементов на планшетах и десктопах
                     }
                 }
             });
 
-            for (var i = 12; i <= 14; i++) {
-                var movie = response[i];
-                itemCount += i;
-                html += '<div class="item">';
-                html += '<div class="gen-movie-contain-style-2 h-100">';
-                html += '<div class="container h-100">';
-                html += '<div class="row flex-row-reverse align-items-center h-100">';
-                html += '<div class="col-xl-6">';
-                html += '<div class="gen-front-image">';
-                html += '<img src="'+ movie.thumbnailsDTO.maxresThumbnail.url + '" alt="owl-carousel-banner-image">';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="col-xl-6">';
-                html += '<div class="gen-tag-line"><span>Most Viewed</span></div>';
-                html += '<div class="gen-movie-info">';
-                html += '<h3>' + movie.movieSnippetDTO.title + '</h3>';
-                html += '</div>';
-                html += '<div class="gen-movie-meta-holder">';
-                html += '<ul class="gen-meta-after-title">';
-                html += '<li class="gen-sen-rating"><span>' + movie.movieSnippetDTO.rating + '</span></li>';
-                html += '<li><img src="' + movie.thumbnailsDTO.defaultThumbnail.url + '" alt="rating-image"><span>' + movie.movieStatisticsDTO.viewsCount + '</span></li>';
-                html += '</ul>';
-                html += '<p>' + movie.movieSnippetDTO.description + '</p>';
-                html += '<div class="gen-meta-info">';
-                html += '<ul class="gen-meta-after-excerpt">';
-                html += '<li><strong>Cast :</strong> ' + movie.castDTOList.map(function (cast) {
-                    return cast.fullName;
-                }).join(', ') + '</li>';
-                html += '<li><strong>Genre :</strong> ' + movie.genresDTOList.map(function (genre) {
-                    return '<span><a href="#">' + genre.genreName + '</a></span>';
-                }).join(', ') + '</li>';
-                html += '</ul>';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="gen-movie-action">';
-                html += '<div class="gen-btn-container">';
-                html += '<a href="single-movie.html" class="gen-button .gen-button-dark">';
-                html += '<i aria-hidden="true" class="fas fa-play"></i> <span class="text">Play Now</span>';
-                html += '</a>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                // $('#movie-container').owlCarousel('add', '<div class="slide"><ul class="postcard_list">'+ html +'</ul></div>').owlCarousel('refresh');
-                $('.carik').owlCarousel('add', html);
-                html = '';
+            for (var i = 12; i <= 15; i++) {
+                var movie1 = response[i];
+                html1 += '<div class="item">';
+                html1 += '<div class="movie type-movie status-publish has-post-thumbnail hentry movie_genre-action movie_genre-adventure movie_genre-drama">';
+                html1 += '<div class="gen-carousel-movies-style-2 movie-grid style-2">';
+                html1 += '<div class="gen-movie-contain">';
+                html1 += '<div class="gen-movie-img">';
+                html1 += '<img src="" alt="owl-carousel-video-image">';
+                html1 += '<div class="gen-movie-add">';
+                html1 += '<div class="wpulike wpulike-heart">';
+                html1 += '<div class="wp_ulike_general_class wp_ulike_is_not_liked">';
+                html1 += '<button type="button" class="wp_ulike_btn wp_ulike_put_image">';
+                html1 += '</button>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '<ul class="menu bottomRight">';
+                html1 += '<li class="share top">';
+                html1 += '<i class="fa fa-share-alt"></i>';
+                html1 += '<ul class="submenu">';
+                html1 += '<li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>';
+                html1 += '<li><a href="#" class="facebook"><i class="fab fa-instagram-f"></i></a></li>';
+                html1 += '<li><a href="#" class="facebook"><i class="fab fa-twitter-f"></i></a></li>';
+                html1 += '</ul>';
+                html1 += '</li>';
+                html1 += '</ul>';
+                html1 += '<div class="movie-actions--link_add-to-playlist dropdown">';
+                html1 += '<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-plus"></i></a>';
+                html1 += '<div class="dropdown-menu mCustomScrollbar">';
+                html1 += '<div class="mCustomScrollBox">';
+                html1 += '<div class="mCSB_container">';
+                html1 += '<a class="login-link" href="register.html">Sign in to add this movie to a playlist.</a>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '<div class="gen-movie-action">';
+                html1 += '<a href="single-movie.html" class="gen-button"><i class="fa fa-play"></i></a>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '<div class="gen-info-contain">';
+                html1 += '<div class="gen-movie-info">';
+                html1 += '<h3><a href="single-movie.html">'+ movie1.movieSnippetDTO.title + '</a></h3>';
+                html1 += '<div class="gen-movie-meta-holder">';
+                html1 += '</div>';
+                html1 += '<ul><li>2.00 hours</li><li><a href="action.html"><span>'+ movie1.genresDTOList.map(function (genres) { return genres.genreName;
+                }).join(', ') + '</span></a></li></ul>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '</div>';
+                html1 += '</div>';
+                $('.lolka').owlCarousel('add', html1);
+                html1 = '';
             }
-            $('.carik').owlCarousel('refresh');
-            // movieContainer.html(html);
+            $('.lolka').owlCarousel('refresh');
         },
         error: function(xhr, status, error) {
             console.log('AJAX Error:', error);

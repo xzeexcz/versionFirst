@@ -6,13 +6,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
 public class MovieSnippetSerializationImpl implements MovieSnippetSerialization {
     @Override
-    public MovieSnippet importMovieSnippetToDataBase(JsonNode jsonNode, Date runTime, Date releaseDate, double rating) {
+    public MovieSnippet importMovieSnippetToDataBase(JsonNode jsonNode, LocalTime runTime, Date releaseDate, double rating) {
         if(jsonNode!=null) {
             MovieSnippet movieSnippet = new MovieSnippet();
             if(runTime != null && releaseDate !=null && rating != 0.0) {

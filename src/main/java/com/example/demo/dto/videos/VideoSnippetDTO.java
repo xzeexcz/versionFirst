@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.dto.videos;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class MovieSnippetDTO {
+public class VideoSnippetDTO {
     private String defaultAudioLanguage;
     private String defaultLanguage;
     private String description;

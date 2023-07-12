@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ public class MovieSerializationImpl implements MovieSerialization {
     private final MovieStatisticsSerialization movieStatisticsSerialization;
     private final MovieSnippetSerialization movieSnippetSerialization;
     @Override
-    public Movie importMovieToDataBase(JsonNode jsonNode, List<Long> genresId, List<Long> castsId, Date runTime, Date releaseDate, double rating) {
+    public Movie importMovieToDataBase(JsonNode jsonNode, List<Long> genresId, List<Long> castsId, LocalTime runTime, Date releaseDate, double rating) {
         if (jsonNode != null &&
                 !castsId.isEmpty() && !genresId.isEmpty() &&
                 runTime != null && releaseDate != null

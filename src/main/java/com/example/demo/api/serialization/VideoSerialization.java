@@ -1,16 +1,16 @@
 package com.example.demo.api.serialization;
 
-import com.example.demo.entities.impls.Movie;
+import com.example.demo.entities.impls.Video;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
-public interface MovieSerialization {
-    Movie importMovieToDataBase(JsonNode jsonNode, List<Long> genresId,
-                                List<Long> castsId,
+public interface VideoSerialization {
+    Video importVideoToDataBase(JsonNode jsonNode,
                                 LocalTime runTime,
                                 Date releaseDate,
-                                double rating);
+                                double rating,
+                                Long videoType);
 }
