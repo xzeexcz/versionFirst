@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Transactional
 public interface MovieRepository extends JpaRepository<Movie,Long> {
     Movie findByMovieId(String movieId);
+
 }

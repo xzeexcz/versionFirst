@@ -41,7 +41,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public List<VideoDTO> getVideosFromDataBase() {
-        return null;
+        return videoMapper.toVideoDTOList(videoRepository.findAll());
     }
 
     @Override

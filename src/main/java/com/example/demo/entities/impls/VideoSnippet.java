@@ -32,7 +32,7 @@ public class VideoSnippet extends BaseEntity {
     private String title;
     @Column(name = "v_snippet_release_date")
     private Date releaseDate;
-    @Column(name = "v_snippet_runtime", columnDefinition = "DATE")
+    @Column(name = "v_snippet_runtime")
     private LocalTime runTime;
     @Column(name = "v_snippet_rating", length = 20, columnDefinition = "DOUBLE")
     private double rating;

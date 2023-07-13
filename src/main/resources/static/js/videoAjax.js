@@ -1,0 +1,74 @@
+function getAllVideos() {
+    $.ajax({
+        url: '/videos/all',
+        type: 'GET',
+        dataType: 'json',
+        success: function(json) {
+            let html = '';
+            for (let i = 0; i < json.length; i++) {
+                let video = json[i];
+                html += `
+              <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="gen-carousel-movies-style-3 movie-grid style-3">
+                  <div class="gen-movie-contain">
+                    <div class="gen-movie-img">
+                      <img src="${video.videoThumbnailsDTO.maxresThumbnail.url}" alt="streamlab-image">
+                      <div class="gen-movie-add">
+                        <div class="wpulike wpulike-heart">
+                          <div class="wp_ulike_general_class wp_ulike_is_not_liked">
+                            <button type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="gen-info-contain">
+                      <div class="gen-movie-info">
+                        <h3><a onclick="videoDetails('${encodeURIComponent(video.url)}')">${video.videoSnippetDTO.title}</a></h3>
+                      </div>
+                      <div class="gen-movie-meta-holder">
+                        <ul>
+                          <li>${video.videoSnippetDTO.runTime}</li>
+                          <li><a href="action.html"><span>${video.videoTypeDTO.videoType}</span></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            }
+            // Добавляем сгенерированный HTML на страницу
+            $('#videoContainer').html(html);
+        }
+    });
+}
+function videoDetails(videoId) {
+    sessionStorage.setItem('lol',videoId);
+    window.location.href = "/videos/"+videoId + "/details";
+}
+function getVideoDetails() {
+    var videoId = sessionStorage.getItem('lol');
+    var url = '/videos/' + videoId;
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (result) {
+            renderVideoDetails(result);
+        }
+    });
+}
+
+function renderVideoDetails(data) {
+    var videoTitle = data.videoSnippetDTO.title;
+    var videoType = data.videoTypeDTO.videoType;
+    var videoViewsCount = data.videoStatisticsDTO.viewsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var videoDescription1 = data.videoSnippetDTO.description;
+
+    $('#videoTitle').text(videoTitle);
+    $('#videoType').text(videoType);
+    $('#videoViews').text(videoViewsCount);
+    $('#videoDescription').html(videoDescription1);
+}
+

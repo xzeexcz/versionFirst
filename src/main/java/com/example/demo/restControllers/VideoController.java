@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/videos")
@@ -33,5 +34,10 @@ public class VideoController {
     @GetMapping(value = "/{id}")
     public VideoDTO getOneVideoByUrl(@PathVariable String id) {
         return videoService.getOneMovieFromDataBase(id);
+    }
+
+    @GetMapping(value = "/all")
+    public List<VideoDTO> findAllVideos() {
+        return videoService.getVideosFromDataBase();
     }
 }

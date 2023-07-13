@@ -6,9 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class HomeController {
+public class MoviesController {
     @GetMapping("/")
     public String lamo() {
-        return "index";
+        return "movies-home";
+    }
+    @GetMapping(value = "/movies")
+    public String movieHome() {
+        return "movies-home";
     }
 }

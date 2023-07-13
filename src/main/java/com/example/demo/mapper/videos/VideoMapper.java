@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 
 @Mapper(componentModel = "spring", uses = {VideoStatisticsMapper.class, VideoStatisticsMapper.class,
         VideoThumbnailMapper.class, VideoThumbnailsMapper.class, VideoTypeMapper.class})
@@ -24,4 +26,7 @@ public interface VideoMapper {
     @Mapping(source = "videoThumbnailsDTO", target = "videoThumbnails")
     @Mapping(source = "videoTypeDTO", target = "videoType")
     Video toVideoEntity(VideoDTO videoDTO);
+
+    List<VideoDTO> toVideoDTOList(List<Video> videoList);
+    List<Video> toVideoEntityList(List<VideoDTO> videoDTOList);
 }

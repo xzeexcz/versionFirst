@@ -25,6 +25,7 @@ public class User extends BaseEntity implements UserDetails{
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Permission> permissions;
+//    @Column(name = "")
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
