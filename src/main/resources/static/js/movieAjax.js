@@ -5,7 +5,7 @@ function getAllMovies() {
         dataType: 'json',
         success: function(data) {
             let html = '';
-            for (let i = 0; i <= 11; i++) {
+            for (let i = 0; i < data.length; i++) {
                 let movie = data[i];
                 html += `
               <div class="col-xl-3 col-lg-4 col-md-6">
@@ -23,7 +23,7 @@ function getAllMovies() {
                     </div>
                     <div class="gen-info-contain">
                       <div class="gen-movie-info">
-                        <h3><a href="single-movie.html">${movie.movieSnippetDTO.title}</a></h3>
+                        <h3><a onclick="movieDetails('${encodeURIComponent(movie.movieId)}')">${movie.movieSnippetDTO.title}</a></h3>
                       </div>
                       <div class="gen-movie-meta-holder">
                         <ul>
@@ -43,6 +43,51 @@ function getAllMovies() {
         }
     });
 }
-function pagination() {
-
+function movieDetails(id) {
+    sessionStorage.setItem('movieId', id);
+    window.location.href = "/movies/"+id+"/details";
 }
+function getMovieDetails() {
+    var movieId = sessionStorage.getItem('movieId');
+    var url = '/home/dto/'+movieId;
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (result) {
+            renderMovieDetails(result);
+        }
+    });
+}
+function renderMovieDetails(data) {
+    var movieTitle1 = data.movieSnippetDTO.title;
+    var movieRating1 = data.movieSnippetDTO.rating;
+    var movieViews1 = data.movieStatisticsDTO.viewsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var movieDescription1 = data.movieSnippetDTO.description;
+    var movieLanguage1 = data.movieSnippetDTO.defaultLanguage;
+    var movieAudio1 = data.movieSnippetDTO.defaultAudioLanguage;
+    var runTime = formatRunTime(data.movieSnippetDTO.runTime);
+    var releaseDate = formatReleaseDate(data.movieSnippetDTO.releaseDate);
+    $('#movieTitle').text(movieTitle1);
+    $('#movieRating').text(movieRating1);
+    $('#movieViews').text(movieViews1);
+    $('#movieDescription').text(movieDescription1);
+    $('#movieLanguage').text(movieLanguage1);
+    $('#movieAudio').text(movieAudio1);
+    $('#movieRunTime').text(runTime);
+    $('#movieReleaseDate').text(releaseDate);
+}
+ function formatRunTime(runtime) {
+     var parts = runtime.split(':');
+     var hours = parseInt(parts[0]);
+     var minutes = parseInt(parts[1]);
+
+     var formattedTime = hours + 'h ' + minutes + 'min';
+     return formattedTime;
+ }
+ function formatReleaseDate(releaseDate) {
+    var date = new Date(releaseDate);
+    var option = { day: 'numeric', month: 'short', year: 'numeric' };
+    var formatDate = date.toLocaleDateString('en-US', option);
+    return formatDate;
+ }

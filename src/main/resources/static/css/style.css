@@ -682,7 +682,7 @@ Single Tv Season
 ===============================================*/
 .single-episode .gen-single-tv-show-info,
 .single-video .gen-single-video-info {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     margin-top: 30px;
     display: inline-block;
     width: 100%;
@@ -1838,6 +1838,7 @@ Blog
     width: 100%;
     background: var(--black-color);
 }
+.link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
 
 .gen-blog-post .gen-post-media {
     overflow: hidden;
@@ -4915,7 +4916,7 @@ Movies Single
 
 /*==========*/
 .gen-single-movie-info {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     margin-top: 30px;
     display: inline-block;
     width: 100%;

@@ -14,9 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +53,32 @@ public class MovieSerializationImpl implements MovieSerialization {
             movie.setThumbnails(movieThumbnailsSerialization.
                     importThumbnailsToDataBase(jsonNode));
             return movie;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public Movie updateMovie(String movieId, Map<String, Object> request, Optional<Movie> optionalMovie) {
+        if(optionalMovie.isPresent()) {
+            Movie currentMovie = optionalMovie.get();
+            if (request.containsKey("movieTitle")) {
+                currentMovie.getMovieSnippet().setTitle((String) request.get("movieTitle"));
+            }
+            if (request.containsKey("movieDescription")) {
+                currentMovie.getMovieSnippet().setDescription((String) request.get("movieDescription"));
+            }
+            if (request.containsKey("movieViewsCount")) {
+                String viewsCountStr = (String) request.get("movieViewsCount");
+                Integer viewsCount = Integer.valueOf(viewsCountStr);
+                currentMovie.getMovieStatistics().setViewsCount(viewsCount.longValue());
+            }
+            if (request.containsKey("movieLikesCount")) {
+                String likesCountStr = (String) request.get("movieLikesCount");
+                Integer likesCount = Integer.valueOf(likesCountStr);
+                currentMovie.getMovieStatistics().setLikesCount(likesCount.longValue());
+            }
+            return currentMovie;
         } else {
             return null;
         }

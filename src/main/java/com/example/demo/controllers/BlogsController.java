@@ -13,11 +13,7 @@ public class BlogsController {
         return "blogs";
     }
     @GetMapping(value = "/blogs/{id}")
-    public String blogDetails(@RequestParam Long id) {
-        return "blog-single";
-    }
-    @GetMapping(value = "/blofds")
-    public String blogDetails2() {
+    public String blogDetails(@PathVariable Long id) {
         return "blog-single";
     }
 }

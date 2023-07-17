@@ -1,6 +1,7 @@
 package com.example.demo.entities.impls;
 
 import com.example.demo.entities.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.Date;
 public class Comments extends BaseEntity {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "c_author")
-    private User user;
+    private User users;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "c_blogs")
     private Blogs blogs;

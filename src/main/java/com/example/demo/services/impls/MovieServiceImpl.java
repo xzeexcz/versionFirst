@@ -11,13 +11,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.services.youtube.model.Video;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -61,5 +61,25 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<MovieDTO> getMoviesDtoFromDataBase() {
         return movieMapper.toMovieDtoList(movieRepository.findAll());
+    }
+
+    @Override
+    public void deleteMoviesFromDataBase(String url) {
+            Movie movie = movieRepository.findByMovieId(url);
+            if(movie !=null) {
+                movieRepository.delete(movie);
+            }
+    }
+
+    @Override
+    public MovieDTO updateMovie(String movieId, Map<String, Object> request) {
+        Optional<Movie> optionalMovie = Optional.ofNullable(movieRepository.findByMovieId(movieId));
+
+        Movie movie = movieSerialization.updateMovie(movieId,request,optionalMovie);
+        if(movie != null) {
+            return movieMapper.toMovieDto(movieRepository.save(movie));
+        } else {
+            return null;
+        }
     }
 }

@@ -40,4 +40,6 @@ public class VideoController {
     public List<VideoDTO> findAllVideos() {
         return videoService.getVideosFromDataBase();
     }
+
+
 }

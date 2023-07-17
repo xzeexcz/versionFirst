@@ -48,4 +48,19 @@ public class VideoServiceImpl implements VideoService {
     public VideoDTO getOneMovieFromDataBase(String videoId) {
         return videoMapper.toVideoDto(videoRepository.getVideoByUrl(videoId));
     }
+
+//    @Override
+//    public void deleteVideoFromDataBase(Long[] id) {
+//
+//    }
+
+//    @Override
+//    public void deleteVideoFromDataBase(Long[] id) {
+//        for(Long videoId : id) {
+//            Video video = videoRepository.findById(videoId).orElse(null);
+//            if(video!=null) {
+//                videoRepository.deleteById(videoId);
+//            }
+//        }
+//    }
 }

@@ -14,4 +14,6 @@ public interface VideoService {
                             double rating, Long videoType) throws GeneralSecurityException, IOException;
     List<VideoDTO> getVideosFromDataBase();
     VideoDTO getOneMovieFromDataBase(String url);
+
+//    void deleteVideoFromDataBase(Long[] id);
 }

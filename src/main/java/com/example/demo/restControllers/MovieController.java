@@ -5,13 +5,17 @@ import com.example.demo.entities.impls.Movie;
 import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
@@ -45,8 +49,23 @@ public class MovieController {
     @GetMapping(value = "/dto")
     public List<MovieDTO> getMoviesDtoFromDataBase() {
         return movieService.getMoviesDtoFromDataBase();
-    }@GetMapping(value = "/dtos")
+    }
+    @GetMapping(value = "/dtos")
     public List<MovieDTO> getMoviesDtoFromDataBase1() {
         return movieService.getMoviesDtoFromDataBase();
     }
+
+    @DeleteMapping(value = "/delete")
+    public ResponseEntity<String> deleteMoviesFromDataBase(@RequestParam(name = "movie_url") String url) {
+        movieService.deleteMoviesFromDataBase(url);
+
+        return ResponseEntity.ok("Success");
+    }
+
+    @PutMapping(value = "/update/{movieId}")
+    public MovieDTO updateMovie(@PathVariable("movieId") String movieId,
+                                         @RequestParam Map<String, Object> request) {
+        return movieService.updateMovie(movieId, request);
+    }
+
 }

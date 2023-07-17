@@ -64,23 +64,17 @@
                       </form>
                     </li>
                     <!-- Library Menu -->
-                    <li>
-                      <a href="library.html">
-                        <i class="fa fa-indent"></i>
-                        Library </a>
+                    <li sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                      <a th:href="@{'/admin-panel'}"><i class="fa fa-list"></i>
+                        Admin panel </a>
                     </li>
                     <li>
-                      <a href="library.html"><i class="fa fa-list"></i>
-                        Movie Playlist </a>
-                    </li>
-
-                    <li>
-                      <a href="library.html"><i class="fa fa-list"></i>
-                        Video Playlist </a>
-                    </li>
-                    <li>
-                      <a href="upload-video.html"> <i class="fa fa-upload"></i>
+                      <a th:href="@{'/upload-video'}"> <i class="fa fa-upload"></i>
                         Upload Video </a>
+                    </li>
+                    <li>
+                      <a th:href="@{'/upload-Movie'}"> <i class="fa fa-upload"></i>
+                        Upload Movie </a>
                     </li>
                   </ul>
                 </div>

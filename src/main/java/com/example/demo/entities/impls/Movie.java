@@ -36,4 +36,7 @@ public class Movie extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_genres_id")
     private List<Genres> genres;
+
+
+
 }
