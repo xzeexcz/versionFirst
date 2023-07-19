@@ -17,6 +17,8 @@ import java.security.GeneralSecurityException;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,14 +28,14 @@ public class VideoServiceImpl implements VideoService {
     private final YoutubeAPIClient youtubeAPIClient;
     private final VideoMapper videoMapper;
     @Override
-    public void addVideoToDataBase(String videoId, LocalTime runTime, Date releaseDate, double rating, Long videoType)
+    public void addVideoToDataBase(String videoId, LocalTime runTime, Date releaseDate, double rating)
             throws GeneralSecurityException, IOException {
         Video video = youtubeAPIClient.getVideoDetails(videoId);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.valueToTree(video);
         if(jsonNode !=null) {
             videoRepository.save(
-                    videoSerialization.importVideoToDataBase(jsonNode,runTime,releaseDate,rating,videoType));
+                    videoSerialization.importVideoToDataBase(jsonNode,runTime,releaseDate,rating));
         } else {
             throw new IOException();
         }
@@ -49,18 +51,23 @@ public class VideoServiceImpl implements VideoService {
         return videoMapper.toVideoDto(videoRepository.getVideoByUrl(videoId));
     }
 
-//    @Override
-//    public void deleteVideoFromDataBase(Long[] id) {
-//
-//    }
+    @Override
+    public VideoDTO updateVideo(String url, Map<String, Object> request) {
+        Optional<com.example.demo.entities.impls.Video> optionalVideo = Optional.ofNullable
+                (videoRepository.getVideoByUrl(url));
+        com.example.demo.entities.impls.Video video = videoSerialization.updateMovie(url,request,optionalVideo);
+        if(video!=null) {
+            return videoMapper.toVideoDto(videoRepository.save(video));
+        } else {
+            return null;
+        }
+    }
 
-//    @Override
-//    public void deleteVideoFromDataBase(Long[] id) {
-//        for(Long videoId : id) {
-//            Video video = videoRepository.findById(videoId).orElse(null);
-//            if(video!=null) {
-//                videoRepository.deleteById(videoId);
-//            }
-//        }
-//    }
+    @Override
+    public void deleteVideoFromDataBase(String url) {
+        com.example.demo.entities.impls.Video video = videoRepository.getVideoByUrl(url);
+        if(video!=null) {
+            videoRepository.delete(video);
+        }
+    }
 }

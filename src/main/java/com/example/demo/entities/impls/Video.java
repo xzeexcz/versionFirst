@@ -18,21 +18,15 @@ public class Video extends BaseEntity {
     @Column(name = "video_id")
     private String url;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,optional = true)
     @JoinColumn(name = "t_video_snippet_id")
     private VideoSnippet videoSnippet;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,optional = true)
     @JoinColumn(name = "t_video_statistics_id")
     private VideoStatistics videoStatistics;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,optional = true)
     @JoinColumn(name = "t_video_thumbnails_id")
     private VideoThumbnails videoThumbnails;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "t_video_type_id")
-    private VideoType videoType;
-
-
 }

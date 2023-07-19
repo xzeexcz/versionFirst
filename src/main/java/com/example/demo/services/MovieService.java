@@ -14,7 +14,7 @@ import java.util.Map;
 public interface MovieService {
 
     void addMovieToDataBase(String videoId,
-                            List<Long> genresId, List<Long> castsId,
+                            List<Long> genresId,
                             LocalTime runTime, Date releaseDate,
                             double rating) throws GeneralSecurityException, IOException;
 

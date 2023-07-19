@@ -1,6 +1,6 @@
 function getAllMovies() {
     $.ajax({
-        url: '/home/dto',
+        url: '/movie/all',
         type: 'GET',
         dataType: 'json',
         success: function(data) {
@@ -49,7 +49,7 @@ function movieDetails(id) {
 }
 function getMovieDetails() {
     var movieId = sessionStorage.getItem('movieId');
-    var url = '/home/dto/'+movieId;
+    var url = '/movie/details/'+movieId;
     $.ajax({
         url: url,
         type: 'GET',
@@ -63,6 +63,7 @@ function renderMovieDetails(data) {
     var movieTitle1 = data.movieSnippetDTO.title;
     var movieRating1 = data.movieSnippetDTO.rating;
     var movieViews1 = data.movieStatisticsDTO.viewsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var movieLikes1 = data.movieStatisticsDTO.likesCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var movieDescription1 = data.movieSnippetDTO.description;
     var movieLanguage1 = data.movieSnippetDTO.defaultLanguage;
     var movieAudio1 = data.movieSnippetDTO.defaultAudioLanguage;
@@ -76,6 +77,7 @@ function renderMovieDetails(data) {
     $('#movieAudio').text(movieAudio1);
     $('#movieRunTime').text(runTime);
     $('#movieReleaseDate').text(releaseDate);
+    $('#movieLikes').text(movieLikes1);
 }
  function formatRunTime(runtime) {
      var parts = runtime.split(':');

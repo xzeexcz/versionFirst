@@ -1,8 +1,13 @@
 package com.example.demo.services;
 
+import com.example.demo.dto.UserDTO;
+import com.example.demo.entities.impls.Permission;
 import com.example.demo.entities.impls.User;
+import com.example.demo.mapper.UserMapper;
+import com.example.demo.respository.PermissionsRepository;
 import com.example.demo.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,13 +15,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserMapper userMapper;
+
+    @Autowired
+    PermissionsRepository permissionsRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -40,7 +52,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User addUser(String email, String password, String firstName, String lastName) {
-        if (email == null || password == null || firstName == null || lastName == null) {
+        if (email == null ||  firstName == null || lastName == null) {
             return null;
         } else {
             User user = new User();
@@ -50,6 +62,12 @@ public class UserService implements UserDetailsService {
             user.setPassword(passwordEncoder.encode(password));
             User checkUser = userRepository.findByEmail(user.getEmail());
             if(checkUser == null) {
+                Permission permission = new Permission();
+                permission.setRole("ROLE_USER");
+                List<Permission> permissions = new ArrayList<>();
+                permissions.add(permission);
+                user.setPermissions(permissions);
+                permissionsRepository.save(permission);
                 return userRepository.save(user);
             } else {
                 return null;
@@ -76,4 +94,48 @@ public class UserService implements UserDetailsService {
         }
         return null;
     }
+
+    public List<UserDTO> getAllUsers() {
+        return userMapper.toUsersDtoList(userRepository.findAll());
+    }
+
+    public UserDTO oneUser(String email) {
+        User user = userRepository.findByEmail(email);
+        if(user!=null) {
+            return userMapper.toUserDto(user);
+        } else {
+            return null;
+        }
+    }
+
+    public ResponseEntity<String> updateUser(String email, List<String> roles) {
+        User user = userRepository.findByEmail(email);
+        if(user!=null) {
+            List<Permission> permissions = new ArrayList<>();
+            for(String role : roles) {
+                Permission permission = new Permission();
+                permission.setRole(role);
+                permissionsRepository.save(permission);
+                permissions.add(permission);
+            }
+            user.getPermissions().clear();
+            user.getPermissions().addAll(permissions);
+            userRepository.save(user);
+            return ResponseEntity.ok("Success");
+        } else {
+            return ResponseEntity.ok("Fail!");
+        }
+    }
+
+    public ResponseEntity<String> deleteUser(String email) {
+        User user = userRepository.findByEmail(email);
+
+        if(user!=null) {
+            userRepository.delete(user);
+            return ResponseEntity.ok("Success");
+        } else {
+            return ResponseEntity.ok("Fail");
+        }
+    }
+
 }

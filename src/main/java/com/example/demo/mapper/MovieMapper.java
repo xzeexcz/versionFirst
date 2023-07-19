@@ -13,19 +13,17 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {MovieSnippetMapper.class, MovieStatisticsMapper.class,
-        ThumbnailsMapper.class, CastMapper.class, GenresMapper.class})
+        ThumbnailsMapper.class, GenresMapper.class})
 public interface MovieMapper {
     MovieMapper INSTANCE = Mappers.getMapper(MovieMapper.class);
     @Mapping(source = "movieSnippet", target = "movieSnippetDTO")
     @Mapping(source = "movieStatistics", target = "movieStatisticsDTO")
     @Mapping(source = "thumbnails", target = "thumbnailsDTO")
-    @Mapping(source = "cast", target = "castDTOList")
     @Mapping(source = "genres", target = "genresDTOList")
     MovieDTO toMovieDto(Movie movie);
     @Mapping(source = "movieSnippetDTO", target = "movieSnippet")
     @Mapping(source = "movieStatisticsDTO", target = "movieStatistics")
     @Mapping(source = "thumbnailsDTO", target = "thumbnails")
-    @Mapping(source = "castDTOList", target = "cast")
     @Mapping(source = "genresDTOList", target = "genres")
     Movie toMovieEntity(MovieDTO movieDTO);
     List<MovieDTO> toMovieDtoList(List<Movie> movieList);

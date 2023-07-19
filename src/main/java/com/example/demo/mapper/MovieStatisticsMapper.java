@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {MovieSnippetMapper.class, MovieStatisticsMapper.class,
-        ThumbnailsMapper.class, CastMapper.class, GenresMapper.class})
+        ThumbnailsMapper.class, GenresMapper.class})
 public interface MovieStatisticsMapper {
     MovieStatisticsMapper INSTANCE = Mappers.getMapper(MovieStatisticsMapper.class);
     MovieStatisticsDTO toMovieStatisticsDto(MovieStatistics movieStatistics);

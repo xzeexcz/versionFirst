@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", uses = {VideoStatisticsMapper.class, VideoStatisticsMapper.class,
-        VideoThumbnailMapper.class, VideoThumbnailsMapper.class, VideoTypeMapper.class})
+        VideoThumbnailMapper.class, VideoThumbnailsMapper.class})
 public interface VideoStatisticsMapper {
     VideoStatisticsMapper INSTANCE = Mappers.getMapper(VideoStatisticsMapper.class);
 

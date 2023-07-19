@@ -10,5 +10,4 @@ public class VideoDTO {
     private VideoSnippetDTO videoSnippetDTO;
     private VideoStatisticsDTO videoStatisticsDTO;
     private VideoThumbnailsDTO videoThumbnailsDTO;
-    private VideoTypeDTO videoTypeDTO;
 }

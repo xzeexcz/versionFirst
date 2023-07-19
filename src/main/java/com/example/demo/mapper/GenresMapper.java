@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {MovieSnippetMapper.class, MovieStatisticsMapper.class,
-        ThumbnailsMapper.class, CastMapper.class, GenresMapper.class})
+        ThumbnailsMapper.class, GenresMapper.class})
 public interface GenresMapper {
     GenresMapper INSTANCE = Mappers.getMapper(GenresMapper.class);
     GenresDTO toGenresDto(Genres genres);

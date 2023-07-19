@@ -29,7 +29,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void addMovieToDataBase(String videoId,
-                                   List<Long> genresId, List<Long> castsId,
+                                   List<Long> genresId,
                                    LocalTime runTime, Date releaseDate,
                                    double rating) throws GeneralSecurityException, IOException {
         Video video = youtubeAPIClient.getVideoDetails(videoId);
@@ -37,7 +37,7 @@ public class MovieServiceImpl implements MovieService {
         JsonNode jsonNode = objectMapper.valueToTree(video);
         if(jsonNode!=null) {
             movieRepository.save(movieSerialization.importMovieToDataBase(jsonNode,
-                    genresId,castsId,runTime,releaseDate,rating));
+                    genresId,runTime,releaseDate,rating));
         } else  {
             throw new IOException();
         }

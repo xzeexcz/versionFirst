@@ -20,12 +20,7 @@
 
                   </li>
                   <li class="menu-item">
-                    <a th:href="@{'/blogs'}">Blogs</a>
-
-
-                  </li>
-                  <li class="menu-item">
-                    <a th:href="@{'/contact'}">Contact Us</a>
+                    <a th:href="@{'/contact-us'}">Contact Us</a>
                   </li>
                 </ul>
               </div>
@@ -68,12 +63,12 @@
                       <a th:href="@{'/admin-panel'}"><i class="fa fa-list"></i>
                         Admin panel </a>
                     </li>
-                    <li>
+                    <li sec:authorize="hasAnyRole('ROLE_ADMIN')">
                       <a th:href="@{'/upload-video'}"> <i class="fa fa-upload"></i>
                         Upload Video </a>
                     </li>
-                    <li>
-                      <a th:href="@{'/upload-Movie'}"> <i class="fa fa-upload"></i>
+                    <li sec:authorize="hasAnyRole('ROLE_ADMIN')" >
+                      <a th:href="@{'/upload-movie'}"> <i class="fa fa-upload"></i>
                         Upload Movie </a>
                     </li>
                   </ul>

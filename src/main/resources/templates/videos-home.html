@@ -5,7 +5,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div layout:fragment="videoContent">
     <!-- breadcrumb -->
-            <div class="gen-breadcrumb" style="background-image: url('images/background/asset-25.jpeg');">
+            <div class="gen-breadcrumb" style="background-image: url('images/phonebread.jpeg');">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-12">
@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="gen-breadcrumb-container">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html"><i
+                                        <li class="breadcrumb-item"><a th:href="@{'/movies'}"><i
                                                     class="fas fa-home mr-2"></i>Home</a></li>
                                         <li class="breadcrumb-item active">Video</li>
                                     </ol>
@@ -37,19 +37,6 @@
                             <div class="row" id="videoContainer">
 
                             </div>
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="gen-pagination">
-                                        <nav aria-label="Page navigation">
-                                            <ul class="page-numbers">
-                                                <li><span aria-current="page" class="page-numbers current">1</span></li>
-                                                <li><a class="page-numbers" href="#">2</a></li>
-                                                <li><a class="page-numbers" href="#">3</a></li>
-                                                <li><a class="next page-numbers" href="#">Next page</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {VideoStatisticsMapper.class, VideoStatisticsMapper.class,
-        VideoThumbnailMapper.class, VideoThumbnailsMapper.class, VideoTypeMapper.class})
+        VideoThumbnailMapper.class, VideoThumbnailsMapper.class})
 public interface VideoSnippetMapper {
     VideoSnippetMapper INSTANCE = Mappers.getMapper(VideoSnippetMapper.class);
 

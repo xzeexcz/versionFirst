@@ -14,4 +14,8 @@ public class VideosController {
     public String videoDetails(@PathVariable String videoId){
         return "video-details";
     }
+    @GetMapping(value = "/upload-video")
+    public String uploadVideo() {
+        return "add-video";
+    }
 }

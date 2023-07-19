@@ -14,6 +14,5 @@ public class MovieDTO {
     private MovieSnippetDTO movieSnippetDTO;
     private MovieStatisticsDTO movieStatisticsDTO;
     private ThumbnailsDTO thumbnailsDTO;
-    private List<CastDTO> castDTOList;
     private List<GenresDTO> genresDTOList;
 }

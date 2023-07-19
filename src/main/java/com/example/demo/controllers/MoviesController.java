@@ -20,4 +20,8 @@ public class MoviesController {
     public String movieDetails(@PathVariable String id) {
         return "movie-details";
     }
+    @GetMapping(value = "/upload-movie")
+    public String uploadMove() {
+        return "add-movie";
+    }
 }

@@ -30,10 +30,6 @@ public class Movie extends BaseEntity {
     private Thumbnails thumbnails;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_casts_id")
-    private List<Cast> cast;
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_genres_id")
     private List<Genres> genres;
 

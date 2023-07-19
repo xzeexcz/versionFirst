@@ -28,7 +28,6 @@ function getAllVideos() {
                       <div class="gen-movie-meta-holder">
                         <ul>
                           <li>${video.videoSnippetDTO.runTime}</li>
-                          <li><a href="action.html"><span>${video.videoTypeDTO.videoType}</span></a></li>
                         </ul>
                       </div>
                     </div>
@@ -62,13 +61,13 @@ function getVideoDetails() {
 
 function renderVideoDetails(data) {
     var videoTitle = data.videoSnippetDTO.title;
-    var videoType = data.videoTypeDTO.videoType;
     var videoViewsCount = data.videoStatisticsDTO.viewsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var videoDescription1 = data.videoSnippetDTO.description;
+    var videoLikes = data.videoStatisticsDTO.likesCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     $('#videoTitle').text(videoTitle);
-    $('#videoType').text(videoType);
     $('#videoViews').text(videoViewsCount);
     $('#videoDescription').html(videoDescription1);
+    $('#videoLikes').text(videoLikes);
 }
 

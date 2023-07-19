@@ -65,6 +65,10 @@ Import css
 /*================================================
 Moz Selection
 ================================================*/
+.checkbox-spacing {
+    margin-bottom: 10px;
+}
+
 :root {
     --primary-color: #e50916;
     --primarydark-color: #b81d24;
@@ -6330,11 +6334,14 @@ Icon-Box
 }
 
 .gen-icon-box-style-1 .gen-icon-box-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 25px;
 }
 
 .gen-icon-box-style-1 .gen-icon-box-icon .gen-icon-animation {
-    display: inline-block;
+    display: flex;
     background-color: #E50916;
     color: #ffffff;
     text-align: center;
@@ -6344,6 +6351,8 @@ Icon-Box
     width: 100px;
     line-height: 100px;
     font-size: 50px;
+    justify-content: center;
+    align-items: center;
 }
 
 .gen-icon-box-style-1 .gen-icon-box-content .gen-icon-box-description {

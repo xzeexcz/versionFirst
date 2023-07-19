@@ -106,7 +106,6 @@
             'post_type':post_type,
             'box_style':box_style,
             'taxo_type': taxo_type,
-            'query': query,
             'paged': CurrentPage
           };
           jQuery.ajax({

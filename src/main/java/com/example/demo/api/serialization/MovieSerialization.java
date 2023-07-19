@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface MovieSerialization {
-    Movie importMovieToDataBase(JsonNode jsonNode, List<Long> genresId,
+    Movie importMovieToDataBase(JsonNode jsonNode,
                                 List<Long> castsId,
                                 LocalTime runTime,
                                 Date releaseDate,
