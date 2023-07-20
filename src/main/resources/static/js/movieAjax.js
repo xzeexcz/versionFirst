@@ -28,8 +28,8 @@ function getAllMovies() {
                       <div class="gen-movie-meta-holder">
                         <ul>
                           <li>${movie.movieSnippetDTO.rating}</li>
-                          <li><a href="action.html"><span>${movie.genresDTOList.map(function(genre) {
-                    return genre.genreName}).join(', ')}</span></a></li>
+                          <li><span>${movie.genresDTOList.map(function(genre) {
+                    return genre.genreName}).join(', ')}</span></li>
                         </ul>
                       </div>
                     </div>

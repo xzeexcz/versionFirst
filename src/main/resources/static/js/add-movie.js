@@ -32,6 +32,7 @@ function loadGenres2() {
     });
 }
 function addMovie() {
+    event.preventDefault();
     var movieUrl = $('#movie-add-url').val();
     var movieRating = $('#movie-add-rating').val();
     var movieRunTime = $('#movie-add-time').val();
