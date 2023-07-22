@@ -5,7 +5,6 @@ import kz.bitlab.streamlab.dto.UserDTO;
 import kz.bitlab.streamlab.entities.impls.Permission;
 import kz.bitlab.streamlab.entities.impls.User;
 import kz.bitlab.streamlab.mapper.UserMapper;
-import kz.bitlab.streamlab.mapper.videos.VideoMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

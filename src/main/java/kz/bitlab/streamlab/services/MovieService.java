@@ -1,7 +1,6 @@
 package kz.bitlab.streamlab.services;
 
 import kz.bitlab.streamlab.dto.MovieDTO;
-import kz.bitlab.streamlab.entities.impls.Movie;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;

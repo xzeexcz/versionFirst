@@ -25,6 +25,7 @@ function addVideo() {
         url: '/videos/add-video/' + encodeURIComponent(videoUrl) + '?runTime='+videoRunTime+'&releaseDate='+formattedRunTime+'&rating='+videoRating,
         type: 'POST',
         success: function(response) {
+            window.location.href="/videos";
             console.log('Video added successfully');
         },
         error: function(xhr, status, error) {

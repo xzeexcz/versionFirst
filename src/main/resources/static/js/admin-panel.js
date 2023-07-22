@@ -222,8 +222,8 @@ function loadUsersForTable() {
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
                 <td>${user.email}</td>
-                <td><button class="btn btn-sm btn-danger" onclick="openModalUserDelete('${user.email}')" >DELETE</button></td>
                 <td><button class="btn btn-sm btn-primary" onclick="openRoleModal('${user.email}')"</button>CHANGE ROLES</td>
+                                <td><button class="btn btn-sm btn-danger" onclick="openModalUserDelete('${user.email}')" >DELETE</button></td>
                 </tr>
             `;
             }

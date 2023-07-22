@@ -8,18 +8,11 @@ function getAllVideos() {
             for (let i = 0; i < json.length; i++) {
                 let video = json[i];
                 html += `
-              <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="col-xl-3 col-lg-4 col-md-6" onclick="videoDetails('${encodeURIComponent(video.url)}')">
                 <div class="gen-carousel-movies-style-3 movie-grid style-3">
                   <div class="gen-movie-contain">
                     <div class="gen-movie-img">
                       <img src="${video.videoThumbnailsDTO.maxresThumbnail.url}" alt="streamlab-image">
-                      <div class="gen-movie-add">
-                        <div class="wpulike wpulike-heart">
-                          <div class="wp_ulike_general_class wp_ulike_is_not_liked">
-                            <button type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     <div class="gen-info-contain">
                       <div class="gen-movie-info">
@@ -27,7 +20,7 @@ function getAllVideos() {
                       </div>
                       <div class="gen-movie-meta-holder">
                         <ul>
-                          <li>${video.videoSnippetDTO.runTime}</li>
+                          <li>${video.videoSnippetDTO.rating}</li>
                         </ul>
                       </div>
                     </div>

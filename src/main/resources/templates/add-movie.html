@@ -4,21 +4,21 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <div layout:fragment="addMovieContent">
-  <div class="gen-breadcrumb" style="background-image: url('images/background/asset-25.jpeg');">
+  <div class="gen-breadcrumb" style="background-image: url('images/phonebread.jpeg');">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-12">
           <nav aria-label="breadcrumb">
             <div class="gen-breadcrumb-title">
               <h1>
-                Library
+                ADD MOVIE
               </h1>
             </div>
             <div class="gen-breadcrumb-container">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html"><i
+                <li class="breadcrumb-item"><a th:href="@{'/movies'}"><i
                         class="fas fa-home mr-2"></i>Home</a></li>
-                <li class="breadcrumb-item active">Library</li>
+                <li class="breadcrumb-item active">Add Movie</li>
               </ol>
             </div>
           </nav>

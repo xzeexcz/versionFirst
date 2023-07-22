@@ -8,9 +8,6 @@ import kz.bitlab.streamlab.respository.PermissionsRepository;
 import kz.bitlab.streamlab.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -75,24 +72,23 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public User updatePassword(String newPassword, String oldPassword) {
-        User currentUser = getCurrentSessionUser();
+    public ResponseEntity<String > updatePassword(String newPassword, String oldPassword, String email) {
+        User currentUser = getCurrentSessionUser(email);
         if(passwordEncoder.matches(oldPassword, currentUser.getPassword())) {
             currentUser.setPassword(passwordEncoder.encode(newPassword));
-            return userRepository.save(currentUser);
+            userRepository.save(currentUser);
+            return ResponseEntity.ok("Success");
+        } else {
+            return ResponseEntity.ok("fail");
+        }
+    }
+    public User getCurrentSessionUser(String email) {
+        User user = userRepository.findByEmail(email);
+        if(user!=null) {
+            return user;
         } else {
             return null;
         }
-    }
-    public User getCurrentSessionUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(!(authentication instanceof AnonymousAuthenticationToken)) {
-            User user =(User) authentication.getPrincipal();
-            if(user!=null) {
-                return user;
-            }
-        }
-        return null;
     }
 
     public List<UserDTO> getAllUsers() {
@@ -126,6 +122,14 @@ public class UserService implements UserDetailsService {
             return ResponseEntity.ok("Fail!");
         }
     }
+    public ResponseEntity<String> checkUser(String email) {
+        User user = userRepository.findByEmail(email);
+        if(user!=null) {
+            return ResponseEntity.ok("Success");
+        } else {
+            return ResponseEntity.ok("null");
+        }
+    }
 
     public ResponseEntity<String> deleteUser(String email) {
         User user = userRepository.findByEmail(email);
@@ -137,5 +141,4 @@ public class UserService implements UserDetailsService {
             return ResponseEntity.ok("Fail");
         }
     }
-
 }

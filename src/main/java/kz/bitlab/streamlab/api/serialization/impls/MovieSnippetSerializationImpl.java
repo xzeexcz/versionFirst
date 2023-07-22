@@ -23,8 +23,7 @@ public class MovieSnippetSerializationImpl implements MovieSnippetSerialization 
             } else {
                 throw new IllegalArgumentException();
             }
-            if (jsonNode.get("snippet").get("defaultAudioLanguage") == null &&
-                    jsonNode.get("snippet").get("defaultAudioLanguage").isNull()) {
+            if (jsonNode.get("snippet").get("defaultAudioLanguage") == null) {
                 movieSnippet.setDefaultAudioLanguage("en");
             } else {
                 movieSnippet.setDefaultAudioLanguage(
